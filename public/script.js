@@ -1,13 +1,16 @@
-const socket = io('http://localhost:3000')
+const socket = io('http://localhost:3000');
 const messageContainer = document.getElementById('message-container')
 const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 
 if (messageForm != null) {
-  const name = prompt('What is your name?')
+  var name = prompt('What is your name?')
+  console.log(name);
   appendMessage('You joined')
-  socket.emit('new-user', roomName, name)
+  if(name != null){
+    socket.emit('new-user', roomName, name)
+  }
 
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
